@@ -217,7 +217,8 @@ if ($resql)
 
 			print '<td align="center">';
 			if ($user->admin) {
-				print '<a href="./list.php?action=delete&id=' . $obj->id . '">';
+/*BR				print '<a href="./list.php?action=delete&id=' . $obj->id . '">'; */
+				print '<a href="./list.php?action=delete&id=' . $obj->contract_id . '">';
 				print img_delete();
 				print '</a>';
 			}

@@ -182,7 +182,8 @@ if ($action == 'addall')
 			
 			$receipt = new Immoreceipt($db);
 			
-			$maLigneCourante = split("_", $maLigneCochee);
+/*BR			$maLigneCourante = split("_", $maLigneCochee); */
+			$maLigneCourante = explode("_", $maLigneCochee);
 			$monId = $maLigneCourante[0];
 			$monLocal = $maLigneCourante[1];
 			$monLocataire = $maLigneCourante[2];

@@ -63,6 +63,7 @@ $sortfield = GETPOST('sortfield','alpha');
 $sortorder = GETPOST('sortorder','alpha');
 $page = GETPOST('page','int');
 if ($page == -1) { $page = 0; }
+if ($page == "") { $page = 0; } //BR
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
@@ -105,8 +106,19 @@ if (GETPOST("button_removefilter_x") || GETPOST("button_removefilter.x") || GETP
 
 
 if ($action == 'delete') {
-$formconfirm = $html->formconfirm($_SERVER["PHP_SELF"] . '?id=' . $id, $langs->trans('DeletePayment'), $langs->trans('ConfirmDeletePayment'), 'confirm_delete', '', 0, 1);
-	print $formconfirm;
+//BR $formconfirm = $html->formconfirm($_SERVER["PHP_SELF"] . '?id=' . $id, $langs->trans('DeletePayment'), $langs->trans('ConfirmDeletePayment'), 'confirm_delete', '', 0, 1);
+//BR	print $formconfirm;
+        $payment = new Immopayment($db);
+        $payment->fetch($id);
+        $result = $payment->delete($user);
+        if ($result > 0) {
+                header("Location: list.php");
+                exit();
+        } else {
+                $mesg = '<div class="error">' . $payment->error . '</div>';
+        }
+
+
 }
 
 /*

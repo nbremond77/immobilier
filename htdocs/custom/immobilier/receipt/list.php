@@ -29,6 +29,10 @@ if (! $res)
 if (! $res)
 	die("Include of main fails");
 
+/*BR */
+require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
+/*BR */
+
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/class/html.formother.class.php';
 require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
@@ -37,6 +41,8 @@ dol_include_once("/immobilier/class/renter.class.php");
 dol_include_once("/immobilier/class/immoproperty.class.php");
 dol_include_once("/immobilier/class/html.formimmobilier.class.php");
 dol_include_once("/immobilier/class/immorent.class.php");
+
+
 
 $langs->load("immobilier@immobilier");
 
@@ -167,8 +173,18 @@ if ($action == 'validaterent') {
 }
 
 if ($action == 'delete') {
-$formconfirm = $html->formconfirm($_SERVER["PHP_SELF"] . '?id=' . $id, $langs->trans('DeleteReceipt'), $langs->trans('ConfirmDeleteReceipt'), 'confirm_delete', '', 0, 1);
-	print $formconfirm;
+//BR $formconfirm = $html->formconfirm($_SERVER["PHP_SELF"] . '?id=' . $id, $langs->trans('DeleteReceipt'), $langs->trans('ConfirmDeleteReceipt'), 'confirm_delete', '', 0, 1);
+//BR	print $formconfirm;
+        $receipt = new Immoreceipt($db);
+        $receipt->fetch($id);
+        $result = $receipt->delete($user);
+        if ($result > 0) {
+                header("Location: list.php");
+                exit();
+        } else {
+                $mesg = '<div class="error">' . $receipt->error . '</div>';
+        }
+/*BR */
 }
 
 // Delete rental

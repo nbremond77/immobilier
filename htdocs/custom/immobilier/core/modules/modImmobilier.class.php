@@ -369,7 +369,7 @@ class modImmobilier extends DolibarrModules
 		);
 		$r ++;
 
-		$this->menu[$r] = array(
+/*BR		$this->menu[$r] = array(
 			'fk_menu' => 'fk_mainmenu=biens,fk_leftmenu=bien',
 			'type' => 'left',
 			'titre' => 'Statistics',
@@ -383,7 +383,7 @@ class modImmobilier extends DolibarrModules
 			'user' => 0
 		);
 		$r ++;
-
+*/
 		// Renters --------------------
 		$this->menu [$r] = array (
 				'fk_menu' => 0,

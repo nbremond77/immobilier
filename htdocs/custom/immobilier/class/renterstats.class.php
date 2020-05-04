@@ -63,7 +63,8 @@ class RenterStats extends Stats
 		$this->from = MAIN_DB_PREFIX.$object->table_element." as p";
 		$this->from.= ", ".MAIN_DB_PREFIX."immo_renter as m";
 
-		$this->field='statut';
+/*BR		$this->field='statut'; */
+		$this->field='m.statut';
 
 		$this->where.= " m.statut != 0";
 		$this->where.= " AND p.fk_owner = m.rowid AND m.entity IN (".getEntity('immobilier').")";
@@ -126,7 +127,8 @@ class RenterStats extends Stats
 	{
 		global $user;
 
-		$sql = "SELECT date_format(p.datec,'%m') as dm, sum(p.".$this->field.")";
+/*BR		$sql = "SELECT date_format(p.datec,'%m') as dm, sum(p.".$this->field.")"; */
+		$sql = "SELECT date_format(p.datec,'%m') as dm, sum(".$this->field.")";
 		$sql.= " FROM ".$this->from;
 		//if (!$user->rights->societe->client->voir && !$user->societe_id) $sql.= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";
 		$sql.= " WHERE date_format(p.datec,'%Y') = '".$year."'";
@@ -147,7 +149,8 @@ class RenterStats extends Stats
 	{
 		global $user;
 
-		$sql = "SELECT date_format(p.datec,'%m') as dm, avg(p.".$this->field.")";
+/*BR		$sql = "SELECT date_format(p.datec,'%m') as dm, avg(p.".$this->field.")"; */
+		$sql = "SELECT date_format(p.datec,'%m') as dm, avg(".$this->field.")";
 		$sql.= " FROM ".$this->from;
 		//if (!$user->rights->societe->client->voir && !$this->socid) $sql.= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";
 		$sql.= " WHERE date_format(p.datec,'%Y') = '".$year."'";

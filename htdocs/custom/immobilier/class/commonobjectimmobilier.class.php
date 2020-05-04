@@ -27,7 +27,8 @@ class CommonObjectImmobilier extends CommonObject
      *	 	@param  int		$fieldid   	Name of field to use for the select MAX and MIN
      *      @return int         		<0 if KO, >0 if OK
      */
-    function load_previous_next_ref($filter,$fieldid)
+/*BR    function load_previous_next_ref($filter,$fieldid) */
+    function load_previous_next_ref($filter,$fieldid, $nodbprefix = 0)
     {
         global $conf, $user;
 

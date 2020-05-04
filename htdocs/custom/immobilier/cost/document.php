@@ -46,7 +46,8 @@ $action = GETPOST ( "action" );
 // Get parameters
 $sortfield = GETPOST ( "sortfield", 'alpha' );
 $sortorder = GETPOST ( "sortorder", 'alpha' );
-$page = GETPOST ( "page", 'int' );
+/*BR $page = GETPOST ( "page", 'int' ); */
+$page=0;
 if ($page == - 1) {
 	$page = 0;
 }

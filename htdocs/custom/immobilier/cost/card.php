@@ -85,7 +85,7 @@ if (GETPOST("sendit") && ! empty($conf->global->MAIN_UPLOAD_DOC)) {
 }
 
 if (GETPOST("action") == 'add') {
-	
+
 	$dateacq = dol_mktime(0,0,0,GETPOST("acqmonth"), GETPOST("acqday"), GETPOST("acqyear"));
 	$datedu = dol_mktime(0,0,0, GETPOST("dumonth"), GETPOST("duday"), GETPOST("duyear"));
 	$dateau = dol_mktime(0,0,0, GETPOST("aumonth"), GETPOST("auday"), GETPOST("auyear"));
@@ -93,14 +93,14 @@ if (GETPOST("action") == 'add') {
 	$object->fk_property = GETPOST("fk_property");
 	$object->label = GETPOST("label");
 	$object->socid = GETPOST("societe");
-	$object->fk_property = GETPOST("fk_property");
+//	$object->fk_property = GETPOST("fk_property");
 	$object->cost_type = GETPOST("cost_type");
 	$object->amount = GETPOST("amount");
 	$object->datec = $dateacq;
 	$object->date_start = $datedu;
 	$object->date_end = $dateau;
 	$object->fk_owner = GETPOST("fk_owner");
-
+//BR print_r($object);
 	$res = $object->create($user);
 	if ($res == 0) {
 	} else {

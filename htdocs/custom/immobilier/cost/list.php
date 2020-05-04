@@ -38,6 +38,13 @@ dol_include_once("/immobilier/class/html.formimmobilier.class.php");
 include_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 
 
+/*BR */
+require_once DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
+require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
+dol_include_once('/mymodule/class/myobject.class.php');
+dol_include_once('/mymodule/lib/mymodule_myobject.lib.php');
+/*BR */
+
 $langs->load("immobilier@immobilier");
 
 
@@ -104,8 +111,18 @@ if (GETPOST("button_removefilter_x") || GETPOST("button_removefilter.x") || GETP
 
 
 if ($action == 'delete') {
-$formconfirm = $html->formconfirm($_SERVER["PHP_SELF"] . '?id=' . $id, $langs->trans('DeleteCost'), $langs->trans('ConfirmDeleteCost'), 'confirm_delete', '', 0, 1);
-	print $formconfirm;
+//BR $formconfirm = $html->formconfirm($_SERVER["PHP_SELF"] . '?id=' . $id, $langs->trans('DeleteCost'), $langs->trans('ConfirmDeleteCost'), 'confirm_delete', '', 0, 1);
+//BR	print $formconfirm;
+        $cost = new Immocost($db);
+        $cost->fetch($id);
+        $result = $cost->delete($user);
+        if ($result > 0) {
+                header("Location: list.php");
+                exit();
+        } else {
+                $mesg = '<div class="error">' . $cost->error . '</div>';
+        }
+
 }
 
 /*
@@ -278,7 +295,8 @@ if ($resql)
 
 			print '<td align="center">';
 			if ($user->admin) {
-				print '<a href="./list.php?action=delete&id=' . $obj->id . '">';
+/*BR				print '<a href="./list.php?action=delete&id=' . $obj->id . '">'; */
+				print '<a href="./list.php?action=delete&id=' . $obj->reference . '">';
 				print img_delete();
 				print '</a>';
 			}
